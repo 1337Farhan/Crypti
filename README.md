@@ -7,5 +7,6 @@ Made by: <a href="https://github.com/Anas-Elhounsri"> @Anas-Elhounsri</a>, and <
 Crypti was a project for a university course, hence it was important to explain how the program works step by step.
 
 # how can I use Crypti?
-
+First, make sure you have python 3.* installed, then from the command line
+  python3 Crypti.py
 <h5> Not a fainancial solution </h5>
