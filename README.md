@@ -6,7 +6,7 @@ Made by: <a href="https://github.com/Anas-Elhounsri"> @Anas-Elhounsri</a>, and <
 # Why does the source have a lot of comments?
 Crypti was a project for a university course, hence it was important to explain how the program works step by step.
 
-# how can I use Crypti?
+# How can I use Crypti?
 First, make sure you have python 3.* installed, then from the command line
 ```
   python3 Crypti.py
