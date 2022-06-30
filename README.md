@@ -11,4 +11,7 @@ First, make sure you have python 3.* installed, then from the command line
 ```
   python3 Crypti.py
 ```
+
+# What are the future plans of Crypti?
+The creators of Crypti are by no means machine learning professionals, but we are planning to create a webapp CryptiWeb after making sure we have a reliable and usable model.
 <h5> Not a fainancial solution </h5>
