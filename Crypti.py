@@ -17,7 +17,7 @@ try:
     
 except ImportError:
     print("Trying to Install required modules\n")
-    os.system('pip3 install -r requirements.txt')
+    os.system('pip install -r requirements.txt')
 
 import plotly.express as px
 import pandas as pd
