@@ -10,28 +10,21 @@ try:
     import plotly.express
     import pandas
     import numpy
-    import cbpro
+    import coinbasepro
     import csv
     import sklearn
     import datetime
     
 except ImportError:
     print("Trying to Install required modules\n")
-    os.system('pip3 install plotly.express')
-    os.system('pip3 install plotly')
-    os.system('pip3 install pandas')
-    os.system('pip3 install numpy')
-    os.system('pip3 install cbpro')
-    os.system('pip3 install csv')
-    os.system('pip3 install sklearn')
-    os.system('pip3 install datetime')
+    os.system('pip3 install -r requirements.txts')
 
 
 import plotly.express as px
 import pandas as pd
 import numpy as np
 import CryptiCLI
-import cbpro
+import coinbasepro as cbpro
 import csv
 from datetime import datetime, timedelta
 from sklearn.linear_model import LinearRegression
@@ -53,15 +46,15 @@ cbClient = cbpro.PublicClient()
 
 # granularity 60, 300, 900, 3600, 21600, 86400
 api_start = datetime.now() - timedelta(days=gran*300/86400)
-data_1 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start, end=datetime.now())
-data_2 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start - timedelta(days=gran*300/86400), end=api_start)
+data_1 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start, stop=datetime.now())
+data_2 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start - timedelta(days=gran*300/86400), stop=api_start)
 
 data = data_1 + data_2 # data -> [ time, low, high, open, close, volume ]
 
-
 # convert UNIX time to str 24h time
 for candle in data:
-    candle[0] = datetime.fromtimestamp(candle[0]).strftime("%Y-%m-%d %H:%M:%S") # convert to readable time
+    print(candle)
+    candle['time'] = candle['time'].strftime("%Y-%m-%d %H:%M:%S") # convert to readable time
 
 # key names for csv format
 keys = ['timestamp', 'low', 'high', 'open', 'close', 'vol']
