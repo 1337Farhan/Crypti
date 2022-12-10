@@ -3,6 +3,5 @@ plotly.express
 pandas
 numpy
 coinbasepro
-csv
 sklearn
 datetime
