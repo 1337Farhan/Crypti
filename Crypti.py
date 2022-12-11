@@ -47,14 +47,13 @@ cbClient = cbpro.PublicClient()
 api_start = datetime.now() - timedelta(days=gran*300/86400)
 data_1 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start, stop=datetime.now())
 data_2 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start - timedelta(days=gran*300/86400), stop=api_start)
-
 data = data_1 + data_2 # data -> [ time, low, high, open, close, volume ]
+print(data)
 
 # convert UNIX time to str 24h time
 for candle in data:
-    print(candle)
     candle['time'] = candle['time'].strftime("%Y-%m-%d %H:%M:%S") # convert to readable time
-
+    
 # key names for csv format
 keys = ['timestamp', 'low', 'high', 'open', 'close', 'vol']
 
