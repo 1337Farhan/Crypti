@@ -48,23 +48,22 @@ api_start = datetime.now() - timedelta(days=gran*300/86400)
 data_1 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start, stop=datetime.now())
 data_2 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start - timedelta(days=gran*300/86400), stop=api_start)
 data = data_1 + data_2 # data -> [ time, low, high, open, close, volume ]
-print(data)
 
 # convert UNIX time to str 24h time
 for candle in data:
     candle['time'] = candle['time'].strftime("%Y-%m-%d %H:%M:%S") # convert to readable time
-    
-# key names for csv format
-keys = ['timestamp', 'low', 'high', 'open', 'close', 'vol']
 
+# key names for csv format
+keys = data[0].keys()
+print(keys)
 # covert array of arrays to csv
-with open('CryptiFood.csv', mode='w') as inputFile:
-    writer = csv.writer(inputFile)
-    writer.writerow(keys)
+with open('CryptiFood.csv', mode='w', newline='') as outputFile:
+    writer = csv.DictWriter(outputFile, keys)
+    writer.writeheader()
     writer.writerows(data)
 
 dataFile = pd.DataFrame(pd.read_csv('CryptiFood.csv')) # read csv
-dataFile = dataFile.sort_values('timestamp', ascending=True) # asc sort 
+dataFile = dataFile.sort_values('time', ascending=True) # asc sort 
 
 projection = candles # number of data points to be predicted
 dataFile['Prediction'] = dataFile[['close']].shift(-projection) # shifting the close price of each day -[projection] rows
@@ -100,7 +99,7 @@ for i in range(1, projection+1):
 # plotting the data
 
 # training data
-fig_rawData = px.line(dataFile, x = 'timestamp', y = 'close', title=f'{Token}')
+fig_rawData = px.line(dataFile, x = 'time', y = 'close', title=f'{Token}')
 fig_rawData.show()
 
 # predicted data
