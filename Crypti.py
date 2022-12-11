@@ -55,7 +55,7 @@ for candle in data:
 
 # key names for csv format
 keys = data[0].keys()
-print(keys)
+
 # covert array of arrays to csv
 with open('CryptiFood.csv', mode='w', newline='') as outputFile:
     writer = csv.DictWriter(outputFile, keys)
@@ -89,7 +89,7 @@ linReg_projection = linReg.predict(x_projection) # perform the projection
 
 PredictionTimestamps = [] # list of timestamps for predicted prices
 
-TempTimestamp = datetime.strptime(data[0][0], "%Y-%m-%d %H:%M:%S") # temporary time
+TempTimestamp = datetime.strptime(data[0]['time'], "%Y-%m-%d %H:%M:%S") # temporary time
 
 # create the timestamps for plotting predicted prices
 for i in range(1, projection+1):
