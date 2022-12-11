@@ -2,13 +2,13 @@ import time
 
 def Welcome():
     print("""
-        Hi I'm Crypti (V1.0 ALPHA), I will be making you rich today...      
+        Hi I'm Crypti (V1.0 ALPHA)
     """)
     time.sleep(1)
 
 # 15 Supported tokens in V1.0 ALPHA, more tokens will be added later
 def chooseToken():
-    Tokens = ['BTC','ETH','ICP','BCH','UNI','ADA','ETC','LINK','MATIC','XLM','LTC','EOS','FIL','DAI','1INCH']
+    Tokens = ['BTC','ETH','ICP','BCH','UNI','ADA','ETC','LINK','MATIC','XLM','LTC','EOS','FIL','DAI', 'XRP']
     print("""
         Please choose a crypto currency from the list below:
         # BTC
@@ -25,7 +25,7 @@ def chooseToken():
         # EOS
         # FIL
         # DAI
-        # 1INCH
+        # XRP
     """)
 
     try:

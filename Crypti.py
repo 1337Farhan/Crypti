@@ -45,8 +45,8 @@ cbClient = cbpro.PublicClient()
 
 # granularity 60, 300, 900, 3600, 21600, 86400
 api_start = datetime.now() - timedelta(days=gran*300/86400)
-data_1 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start, stop=datetime.now())
-data_2 = cbClient.get_product_historic_rates(f'{Token}'+'-USD', granularity=gran, start=api_start - timedelta(days=gran*300/86400), stop=api_start)
+data_1 = cbClient.get_product_historic_rates(f"{Token}"+"-USD", granularity=gran, start=api_start, stop=datetime.now())
+data_2 = cbClient.get_product_historic_rates(f"{Token}"+"-USD", granularity=gran, start=api_start - timedelta(days=gran*300/86400), stop=api_start)
 data = data_1 + data_2 # data -> [ time, low, high, open, close, volume ]
 
 # convert UNIX time to str 24h time
